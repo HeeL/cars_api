@@ -12,5 +12,7 @@ object Db extends Instance(
   initMode = InitMode.DropAllCreate
 ) {
 
+  // seeding
+  Car.create("Car Title")
 }
 
