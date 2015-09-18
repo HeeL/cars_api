@@ -37,5 +37,15 @@ class CarApiSpec extends Specification with Specs2RouteTest with CarApi {
       }
     }
 
+    "when calling POST v1/cars should return new created car instance" in {
+      var carFormData = Seq("title" -> "New Car Title")
+
+      Post("/v1/cars", FormData(carFormData)) ~> carRoute ~> check {
+        status should beEqualTo(OK)
+        mediaType === `application/json`
+        responseAs[String] must contain("New Car Title")
+      }
+    }
+
   }
 }

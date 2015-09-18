@@ -20,6 +20,17 @@ trait CarApi extends BaseHttpService with ActorHelper {
         }
       }
   }~
+  post {
+    formFields('title.as[String]) {
+      (title) =>
+        respondWithMediaType(`application/json`) {
+          complete {
+            (car ? ("create", title)).mapTo[String]
+          }
+        }
+      }
+    }
+  } ~
   pathPrefix("cars" / IntNumber) { id =>
     get {
       respondWithMediaType(`application/json`) {
@@ -27,6 +38,14 @@ trait CarApi extends BaseHttpService with ActorHelper {
           (car ? ("show", id)).mapTo[String]
         }
       }
+    }~
+    put {
+      formFields('title.as[String]) { (title) =>
+        respondWithMediaType(`application/json`) {
+          complete {
+            (car ? ("update", id, title)).mapTo[String]
+          }
+        }
+      }
     }
-
 }

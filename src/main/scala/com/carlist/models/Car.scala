@@ -12,4 +12,11 @@ object Car {
     Db.query[Car].fetch()
   }
 
+  def create(title: String) = {
+    Db.save(Car(title))
+  }
+
+  def update(id: Int, title: String) = {
+    findById(id).map(c => c.copy(title = title)).map(Db.save)
+  }
 }
