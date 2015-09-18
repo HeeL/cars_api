@@ -6,4 +6,8 @@ case class Car(title: String)
 
 object Car {
 
+  def listAll = {
+    Db.query[Car].fetch()
+  }
+
 }
