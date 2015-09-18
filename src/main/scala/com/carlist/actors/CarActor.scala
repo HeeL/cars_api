@@ -7,8 +7,8 @@ import com.carlist.models.Car
 class CarActor extends Actor with ActorLogging {
 
   def receive = {
-    case ("list") =>
-      val cars = Car.listAll
+    case ("list", sort: Option[Int]) =>
+      val cars = Car.listAll(sort)
       val result = JsonUtil.toJson(cars)
       sender ! result
 

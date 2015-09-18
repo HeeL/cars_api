@@ -13,10 +13,13 @@ trait CarApi extends BaseHttpService with ActorHelper {
   val carRoute = pathPrefix("v1") {
     path("cars") {
       get {
-        respondWithMediaType(`application/json`) {
-          complete {
-            (car ? "list").mapTo[String]
-          }
+        parameters('sort.?) {
+          sort =>
+            respondWithMediaType(`application/json`) {
+              complete {
+                (car ? ("list", sort)).mapTo[String]
+              }
+            }
         }
       } ~
       post {

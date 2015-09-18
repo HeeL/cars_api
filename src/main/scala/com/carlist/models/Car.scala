@@ -8,7 +8,8 @@ object Car {
 
   def findById(id: Int) = Db.query[Car].whereEqual("id", id).fetchOne()
 
-  def listAll = {
+  def listAll(sort: Option[Int] = Some(0)) = {
+    val sort_by = Map(1 -> "title").getOrElse(sort.getOrElse(0), "id")
     Db.query[Car].fetch()
   }
 

@@ -17,7 +17,9 @@ class CarApiSpec extends Specification with Specs2RouteTest with CarApi {
 
   def actorRefFactory = system
 
-  val carData = Car.listAll.last
+  val all_cars = Car.listAll()
+  val car1 = all_cars.head
+  val car2 = all_cars.last
 
   "CarApi" should {
 
@@ -25,15 +27,15 @@ class CarApiSpec extends Specification with Specs2RouteTest with CarApi {
       Get("/v1/cars") ~> carRoute ~> check {
         status should beEqualTo(OK)
         mediaType === `application/json`
-        responseAs[String] must contain("Car Title")
+        responseAs[String] must contain(car2.title)
       }
     }
 
-    s"when calling GET v1/cars/${carData.id} should return car" in {
-      Get(s"/v1/cars/${carData.id}") ~> carRoute ~> check {
+    s"when calling GET v1/cars/${car2.id} should return car" in {
+      Get(s"/v1/cars/${car2.id}") ~> carRoute ~> check {
         status should beEqualTo(OK)
         mediaType === `application/json`
-        responseAs[String] must contain("Car Title")
+        responseAs[String] must contain(car2.title)
       }
     }
 
@@ -47,8 +49,8 @@ class CarApiSpec extends Specification with Specs2RouteTest with CarApi {
       }
     }
 
-    s"when calling DELETE v1/cars/${carData.id} should delete exisisting car instance" in {
-      Delete(s"/v1/cars/${carData.id}") ~> carRoute ~> check {
+    s"when calling DELETE v1/cars/${car1.id} should delete exisisting car instance" in {
+      Delete(s"/v1/cars/${car1.id}") ~> carRoute ~> check {
         status should beEqualTo(OK)
       }
     }

@@ -13,6 +13,7 @@ object Db extends Instance(
 ) {
 
   // seeding
+  Car.create("BMW")
   Car.create("Car Title")
 }
 
