@@ -29,6 +29,13 @@ class CarApiSpec extends Specification with Specs2RouteTest with CarApi {
       }
     }
 
+    s"when calling GET v1/cars/${carData.id} should return car" in {
+      Get(s"/v1/cars/${carData.id}") ~> carRoute ~> check {
+        status should beEqualTo(OK)
+        mediaType === `application/json`
+        responseAs[String] must contain("Car Title")
+      }
+    }
 
   }
 }

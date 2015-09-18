@@ -11,6 +11,12 @@ class CarActor extends Actor with ActorLogging {
       val cars = Car.listAll
       val result = JsonUtil.toJson(cars)
       sender ! result
+
+    case ("show", id: Int) =>
+      val car = Car.findById(id)
+      val result = JsonUtil.toJson(car)
+      sender ! result
+
   }
 
 }

@@ -19,6 +19,14 @@ trait CarApi extends BaseHttpService with ActorHelper {
           }
         }
       }
-  }
+  }~
+  pathPrefix("cars" / IntNumber) { id =>
+    get {
+      respondWithMediaType(`application/json`) {
+        complete {
+          (car ? ("show", id)).mapTo[String]
+        }
+      }
+    }
 
 }
