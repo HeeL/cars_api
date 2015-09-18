@@ -47,5 +47,11 @@ class CarApiSpec extends Specification with Specs2RouteTest with CarApi {
       }
     }
 
+    s"when calling DELETE v1/cars/${carData.id} should delete exisisting car instance" in {
+      Delete(s"/v1/cars/${carData.id}") ~> carRoute ~> check {
+        status should beEqualTo(OK)
+      }
+    }
+
   }
 }

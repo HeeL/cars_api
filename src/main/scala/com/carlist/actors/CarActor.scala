@@ -27,6 +27,9 @@ class CarActor extends Actor with ActorLogging {
       val result = JsonUtil.toJson(car)
       sender ! result
 
+    case ("delete", id: Int) =>
+      val car = Car.delete(id)
+      sender ! ""
   }
 
 }

@@ -19,4 +19,7 @@ object Car {
   def update(id: Int, title: String) = {
     findById(id).map(c => c.copy(title = title)).map(Db.save)
   }
+
+  def delete(id: Int) = findById(id).map(c => Db.delete(c))
+
 }
