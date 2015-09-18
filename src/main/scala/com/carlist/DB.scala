@@ -13,7 +13,7 @@ object Db extends Instance(
 ) {
 
   // seeding
-  Car.create("BMW")
-  Car.create("Car Title")
+  Car.create("BMW", 1, 8000, true)
+  Car.create("Car Title", 2, 5400, false)
 }
 
