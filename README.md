@@ -28,10 +28,10 @@ You can stop the application by running:
         > re-stop
 
 
-### API:
+### API Contract:
 
-      GET     /v1/cars              => list all the cars
-      GET     /v1/cars/:id          => get a single car by id
-      POST    /v1/cars              => create a new car from params
-      PUT     /v1/cars/:id          => update the car by id
-      DELETE  /v1/cars/:id          => delete the car by id
+      GET     /v1/cars             => list all the cars
+      GET     /v1/cars/:id         => get a single car by id
+      POST    /v1/cars             => create a new car from params
+      PUT     /v1/cars/:id         => update the car by id
+      DELETE  /v1/cars/:id         => delete the car by id
