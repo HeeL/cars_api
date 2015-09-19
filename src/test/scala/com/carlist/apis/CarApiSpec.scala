@@ -41,10 +41,10 @@ class CarApiSpec extends Specification with Specs2RouteTest with CarApi {
 
     "when calling POST v1/cars should return new created car instance" in {
       var carFormData = Seq(
-        "title"  -> "New Car Title",
-        "fuel"   -> "1",
-        "price"  -> "5500",
-        "is_new" -> "false"
+        "title"   -> "New Car Title",
+        "fuel"    -> "1",
+        "price"   -> "5500",
+        "is_new"  -> "false"
       )
 
       Post("/v1/cars", FormData(carFormData)) ~> carRoute ~> check {
@@ -52,6 +52,22 @@ class CarApiSpec extends Specification with Specs2RouteTest with CarApi {
         mediaType === `application/json`
         responseAs[String] must contain("New Car Title")
         responseAs[String] must contain("5500")
+      }
+    }
+
+    "when calling POST v1/cars with mileage should save the value" in {
+      var carFormData = Seq(
+        "title"   -> "New Car Title",
+        "fuel"    -> "1",
+        "price"   -> "5500",
+        "is_new"  -> "false",
+        "mileage" -> "200000"
+      )
+
+      Post("/v1/cars", FormData(carFormData)) ~> carRoute ~> check {
+        status should beEqualTo(OK)
+        mediaType === `application/json`
+        responseAs[String] must contain("200000")
       }
     }
 

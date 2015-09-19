@@ -23,11 +23,11 @@ trait CarApi extends BaseHttpService with ActorHelper {
         }
       } ~
       post {
-        formFields('title.as[String], 'fuel.as[Int], 'price.as[Int], 'is_new.as[Boolean]) {
-          (title, fuel, price, is_new) =>
+        formFields('title.as[String], 'fuel.as[Int], 'price.as[Int], 'is_new.as[Boolean], 'mileage.as[Int].?) {
+          (title, fuel, price, is_new, mileage) =>
             respondWithMediaType(`application/json`) {
               complete {
-                (car ? ("create", title, fuel, price, is_new)).mapTo[String]
+                (car ? ("create", title, fuel, price, is_new, mileage)).mapTo[String]
               }
             }
         }

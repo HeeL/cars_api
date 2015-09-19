@@ -17,8 +17,8 @@ class CarActor extends Actor with ActorLogging {
       val result = JsonUtil.toJson(car)
       sender ! result
 
-    case ("create", title: String, fuel: Int, price: Int, is_new: Boolean) =>
-      val car = Car.create(title, fuel, price, is_new)
+    case ("create", title: String, fuel: Int, price: Int, is_new: Boolean, mileage: Option[Int]) =>
+      val car = Car.create(title, fuel, price, is_new, mileage)
       val result = JsonUtil.toJson(car)
       sender ! result
 

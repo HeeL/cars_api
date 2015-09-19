@@ -2,7 +2,7 @@ package com.carlist.models
 
 import com.carlist.Db
 
-case class Car(title: String, fuel: Int, price: Int, is_new: Boolean)
+case class Car(title: String, fuel: Int, price: Int, is_new: Boolean, mileage: Option[Int])
 
 object Car {
 
@@ -13,8 +13,8 @@ object Car {
     Db.query[Car].fetch()
   }
 
-  def create(title: String, fuel: Int, price: Int, is_new: Boolean) = {
-    Db.save(Car(title, fuel, price, is_new))
+  def create(title: String, fuel: Int, price: Int, is_new: Boolean, mileage: Option[Int]) = {
+    Db.save(Car(title, fuel, price, is_new, mileage))
   }
 
   def update(id: Int, title: String, fuel: Int, price: Int, is_new: Boolean) = {
