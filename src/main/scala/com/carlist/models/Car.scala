@@ -2,7 +2,11 @@ package com.carlist.models
 
 import com.carlist.Db
 
-case class Car(title: String, fuel: Int, price: Int, is_new: Boolean, mileage: Option[Int])
+case class Car(title: String, fuel: Int, price: Int, is_new: Boolean, mileage: Option[Int]){
+  if (!is_new) {
+    require(mileage.size > 0, "The mileage has to be specified if the car is used")
+  }
+}
 
 object Car {
 

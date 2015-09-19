@@ -44,7 +44,7 @@ class CarApiSpec extends Specification with Specs2RouteTest with CarApi {
         "title"   -> "New Car Title",
         "fuel"    -> "1",
         "price"   -> "5500",
-        "is_new"  -> "false"
+        "is_new"  -> "true"
       )
 
       Post("/v1/cars", FormData(carFormData)) ~> carRoute ~> check {
