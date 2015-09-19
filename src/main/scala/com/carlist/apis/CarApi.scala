@@ -4,22 +4,24 @@ import akka.actor.Props
 import akka.pattern.ask
 import com.carlist.actors._
 import spray.http.MediaTypes._
+import com.carlist.cors._
 
 
-trait CarApi extends BaseHttpService with ActorHelper {
+trait CarApi extends BaseHttpService with ActorHelper with CORSSupport {
 
   val car = actorRefFactory.actorOf(Props[CarActor], "car")
 
   val carRoute = pathPrefix("v1") {
     path("cars") {
-      get {
-        parameters('sort.?) {
-          sort =>
+      cors {
+        get {
+          parameters('sort.?) { sort =>
             respondWithMediaType(`application/json`) {
               complete {
                 (car ? ("list", sort)).mapTo[String]
               }
             }
+          }
         }
       } ~
       post {
