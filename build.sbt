@@ -16,6 +16,7 @@ libraryDependencies ++= {
     "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.6.0-1",
     "org.sorm-framework"           %   "sorm"                % "0.3.18",
     "org.postgresql"               %   "postgresql"          % "9.4-1201-jdbc41",
+    "joda-time"                    %   "joda-time"           % "2.8.2",
     "io.spray"                     %%  "spray-testkit"       % sprayV   % "test",
     "com.typesafe.akka"            %%  "akka-testkit"        % akkaV    % "test",
     "org.specs2"                   %%  "specs2-core"         % "2.3.11" % "test"
